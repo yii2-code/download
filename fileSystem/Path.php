@@ -8,7 +8,7 @@
 
 declare(strict_types=1);
 
-namespace cheremhovo\fileSystem\fileSystem;
+namespace cheremhovo\download\fileSystem;
 
 use Yii;
 use yii\helpers\FileHelper;

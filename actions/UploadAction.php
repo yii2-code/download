@@ -8,10 +8,10 @@
 
 declare(strict_types=1);
 
-namespace cheremhovo\fileSystem\actions;
+namespace cheremhovo\download\actions;
 
-use cheremhovo\fileSystem\fileSystem\Path;
-use cheremhovo\fileSystem\services\UploadImageService;
+use cheremhovo\download\fileSystem\Path;
+use cheremhovo\download\services\UploadImageService;
 use DomainException;
 use Yii;
 use yii\base\Action;

@@ -17,7 +17,7 @@
   },
   "autoload": {
     "psr-4": {
-      "cheremhovo\\fileSystem\\": ""
+      "cheremhovo\\download\\": ""
     }
   },
   "repositories": [

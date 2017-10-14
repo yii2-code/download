@@ -8,10 +8,10 @@
 
 declare(strict_types=1);
 
-namespace cheremhovo\fileSystem\services;
+namespace cheremhovo\download\services;
 
-use cheremhovo\fileSystem\fileSystem\File;
-use cheremhovo\fileSystem\fileSystem\Path;
+use cheremhovo\download\fileSystem\File;
+use cheremhovo\download\fileSystem\Path;
 use DomainException;
 use Imagine\Image\ManipulatorInterface;
 use yii\helpers\ArrayHelper;
