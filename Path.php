@@ -95,14 +95,6 @@ class Path
         return $this->directory . '/' . $this->file->getName();
     }
 
-    /**
-     * @param Path $path
-     */
-    public function copyTo(Path $path): void
-    {
-        copy($this->getPathFile(), $path->getPathFile());
-    }
-
 
     /**
      * @return bool
