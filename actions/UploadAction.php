@@ -63,7 +63,7 @@ class UploadAction extends Action
             $service->run($this->name);
         } catch (DomainException $exception) {
             Yii::$app->errorHandler->logException($exception);
-            return ['error', $exception->getMessage()];
+            return ['error' => $exception->getMessage()];
         }
         return [];
     }
