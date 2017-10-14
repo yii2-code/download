@@ -16,6 +16,10 @@ use yii\helpers\ArrayHelper;
 use yii\imagine\Image;
 use yii\web\UploadedFile;
 
+/**
+ * Class UploadImageService
+ * @package cheremhovo\services
+ */
 class UploadImageService
 {
     /**
@@ -62,11 +66,15 @@ class UploadImageService
         $this->createThumbs();
     }
 
-    protected function createThumbs()
+
+    /**
+     *
+     */
+    protected function createThumbs(): void
     {
         if (is_readable($this->path->getPathFile())) {
             foreach ($this->thumbs as $thumb => $config) {
-                $thumbPath = $this->path->getDirectory() . '/' . $this->getThumbFileName($this->path->getFile()->getName(), $thumb);
+                $thumbPath = $this->path->getDirectory() . '/' . $this->path->getFile()->getThumbName($thumb);
                 if (!is_file($thumbPath)) {
                     $this->generateImageThumb($config, $thumbPath);
                 }
@@ -78,7 +86,7 @@ class UploadImageService
      * @param array $config
      * @param string $thumbPath
      */
-    protected function generateImageThumb($config, $thumbPath)
+    protected function generateImageThumb($config, $thumbPath): void
     {
         $width = ArrayHelper::getValue($config, 'width');
         $height = ArrayHelper::getValue($config, 'height');
@@ -98,20 +106,10 @@ class UploadImageService
     }
 
     /**
-     * @param string $file
-     * @param string $thumb
-     * @return string
-     */
-    protected function getThumbFileName($file, $thumb = 'thumb')
-    {
-        return $thumb . '-' . $file;
-    }
-
-    /**
      * @param string $message
      * @throws DomainException
      */
-    public function domainException(string $message): void
+    private function domainException(string $message): void
     {
         throw new DomainException($message);
     }

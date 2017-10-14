@@ -10,6 +10,10 @@ declare(strict_types=1);
 
 namespace cheremhovo\fileSystem\fileSystem;
 
+/**
+ * Class File
+ * @package cheremhovo\fileSystem\fileSystem
+ */
 class File
 {
 
@@ -41,5 +45,14 @@ class File
     public function generateName(): string
     {
         return hash('crc32', pathinfo($this->name, PATHINFO_FILENAME)) . '-' . time() . '.' . pathinfo($this->name, PATHINFO_EXTENSION);
+    }
+
+    /**
+     * @param string $thumb
+     * @return string
+     */
+    public function getThumbName(string $thumb): string
+    {
+        return $thumb . '-' . $this->name;
     }
 }
