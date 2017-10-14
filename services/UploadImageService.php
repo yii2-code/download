@@ -6,7 +6,9 @@
  * Time: 16:15
  */
 
-namespace cheremhovo\services;
+declare(strict_types=1);
+
+namespace cheremhovo\fileSystem\services;
 
 use cheremhovo\fileSystem\fileSystem\File;
 use cheremhovo\fileSystem\fileSystem\Path;
@@ -16,10 +18,6 @@ use yii\helpers\ArrayHelper;
 use yii\imagine\Image;
 use yii\web\UploadedFile;
 
-/**
- * Class UploadImageService
- * @package cheremhovo\services
- */
 class UploadImageService
 {
     /**
