@@ -8,15 +8,11 @@
 
 declare(strict_types=1);
 
-namespace cheremhovo\fileSystem;
+namespace cheremhovo\fileSystem\fileSystem;
 
 use Yii;
 use yii\helpers\FileHelper;
 
-/**
- * Class Path
- * @package cheremhovo\fileSystem
- */
 class Path
 {
 

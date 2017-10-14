@@ -8,12 +8,8 @@
 
 declare(strict_types=1);
 
-namespace cheremhovo\fileSystem;
+namespace cheremhovo\fileSystem\fileSystem;
 
-/**
- * Class File
- * @package cheremhovo\fileSystem
- */
 class File
 {
 
