@@ -16,8 +16,14 @@ use DomainException;
 use Yii;
 use yii\base\Action;
 use yii\base\InvalidConfigException;
+use yii\validators\ImageValidator;
 use yii\web\Response;
+use yii\web\UploadedFile;
 
+/**
+ * Class UploadAction
+ * @package cheremhovo\download\actions
+ */
 class UploadAction extends Action
 {
     /** @var Path */
@@ -31,6 +37,10 @@ class UploadAction extends Action
      */
     public $name;
 
+    /**
+     * @var array
+     */
+    public $validateOptions = [];
     /**
      * @throws InvalidConfigException
      */
@@ -46,6 +56,9 @@ class UploadAction extends Action
         if (!is_string($this->name) || empty($this->name)) {
             throw new InvalidConfigException(static::class . '::name must be set');
         }
+        if (!is_array($this->validateOptions)) {
+            throw new InvalidConfigException(static::class . '::validateOptions must be set as array');
+        }
     }
 
 
@@ -60,7 +73,17 @@ class UploadAction extends Action
                 $this->path,
                 $this->thumbs
             );
-            $service->run($this->name);
+            $file = UploadedFile::getInstanceByName($this->name);
+            $service->validate(
+                array_merge(
+                    $this->validateOptions,
+                    [
+                        'class' => ImageValidator::class,
+                    ]
+                ),
+                $file
+            );
+            $service->run($file);
         } catch (DomainException $exception) {
             Yii::$app->errorHandler->logException($exception);
             return ['error' => $exception->getMessage()];

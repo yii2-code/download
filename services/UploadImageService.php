@@ -16,8 +16,13 @@ use DomainException;
 use Imagine\Image\ManipulatorInterface;
 use yii\helpers\ArrayHelper;
 use yii\imagine\Image;
+use yii\validators\ImageValidator;
 use yii\web\UploadedFile;
 
+/**
+ * Class UploadImageService
+ * @package cheremhovo\download\services
+ */
 class UploadImageService
 {
     /**
@@ -42,14 +47,26 @@ class UploadImageService
 
 
     /**
-     * @param string $name
+     * @param array $config
+     * @param UploadedFile|null $file
+     * @return bool
      */
-    public function run(string $name)
+    public function validate(array $config, UploadedFile $file = null)
     {
-        $file = UploadedFile::getInstanceByName($name);
-        if (is_null($file)) {
-            $this->domainException('Нет файла');
+        /** @var ImageValidator $validate */
+        $validate = \Yii::createObject($config);
+        if ($result = $validate->validate($file, $error)) {
+            return true;
         }
+        $this->domainException($error);
+        return false;
+    }
+
+    /**
+     * @param UploadedFile $file
+     */
+    public function run(UploadedFile $file)
+    {
         $name = (new File($file->name))->generateName();
         $this->path->setFile(new File($name));
 
